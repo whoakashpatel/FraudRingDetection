@@ -7,6 +7,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import Circle, FancyArrowPatch
 import numpy as np
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
@@ -87,6 +88,51 @@ fig.tight_layout(rect=[0, 0, 1, .84])
 fig.savefig(FIG / "alert_budget_results.png", dpi=220, bbox_inches="tight")
 plt.close(fig)
 
+# Illustrative transaction-ring motifs for the problem introduction.
+fig, axes = plt.subplots(1, 3, figsize=(10.2, 3.55))
+motifs = [
+    ("Relay / layering", {"A": (.06,.5), "B": (.35,.5), "C": (.65,.5), "D": (.94,.5)},
+     [("A","B","t1  $100"),("B","C","t2  $99"),("C","D","t3  $98")],
+     "Funds pass through intermediaries"),
+    ("Fan-in / collection", {"A": (.08,.82), "B": (.08,.5), "C": (.08,.18), "H": (.58,.5), "D": (.94,.5)},
+     [("A","H","t1"),("B","H","t2"),("C","H","t3"),("H","D","t4")],
+     "Several accounts converge on a hub"),
+    ("Circular flow", {"A": (.5,.86), "B": (.12,.22), "C": (.88,.22)},
+     [("A","B","t1"),("B","C","t2"),("C","A","t3")],
+     "A directed cycle returns funds"),
+]
+for ax, (title, pos, edges, note) in zip(axes, motifs):
+    ax.set_xlim(-.10, 1.10); ax.set_ylim(.05, 1.02); ax.axis("off")
+    ax.set_title(title, fontsize=11, weight="bold", color="#153B50", pad=8)
+    for src, dst, label in edges:
+        x1, y1 = pos[src]; x2, y2 = pos[dst]
+        rad = .12 if len(pos) == 3 else 0
+        # Bend the final cycle edge to keep its time label outside the node cluster.
+        if len(pos) == 3 and src == "C":
+            rad = .28
+        arrow = FancyArrowPatch((x1,y1), (x2,y2), arrowstyle="-|>", mutation_scale=13,
+                                shrinkA=18, shrinkB=18, linewidth=1.7, color="#287D8E",
+                                connectionstyle=f"arc3,rad={rad}")
+        ax.add_patch(arrow)
+        xm, ym = (x1+x2)/2, (y1+y2)/2
+        if title == "Fan-in / collection" and src in {"A","C"}:
+            xm += .02; ym += .08 if src == "A" else -.08
+        elif title == "Circular flow":
+            ym += .06 if src == "A" else (-.035 if src == "B" else .04)
+        else:
+            ym += .10
+        ax.text(xm, ym, label, ha="center", va="center", fontsize=7.4, color="#24343B",
+                bbox=dict(boxstyle="round,pad=.16", fc="white", ec="none", alpha=.92))
+    for node, (x,y0) in pos.items():
+        face = "#F3C969" if node == "H" else "#DCEEF2"
+        ax.add_patch(Circle((x,y0), .075, facecolor=face, edgecolor="#176B87", linewidth=1.5, zorder=3))
+        ax.text(x, y0, node, ha="center", va="center", fontsize=9, weight="bold", color="#153B50", zorder=4)
+    ax.text(.5, .015, note, transform=ax.transAxes, ha="center", va="bottom", fontsize=8, color="#52656D")
+fig.suptitle("Illustrative directed transaction motifs", x=.03, ha="left", fontsize=13, weight="bold", color="#153B50")
+fig.tight_layout(rect=[0, .03, 1, .91], w_pad=1.5)
+fig.savefig(FIG / "ring_scenarios.png", dpi=230, bbox_inches="tight")
+plt.close(fig)
+
 shutil.copy2(ROOT / "outputs/eda_overview.png", FIG / "eda_overview.png")
 
 # Derive benchmark means and standard deviations from the saved seed-level outputs.
@@ -115,6 +161,11 @@ tex = r'''\documentclass[11pt]{article}
 \author{Analytics and Systems of Big Data}
 \date{October 2026}
 \begin{document}\maketitle
+\section*{Problem introduction}
+Financial fraud can involve several accounts moving value in coordination: one account may relay funds through intermediaries, multiple accounts may converge on a collector, or funds may circulate through a directed cycle. In a transaction graph, accounts are nodes and transfers are directed, time-stamped, amount-weighted edges. These structures motivate looking beyond isolated transaction classification.
+\begin{figure}[h]\centering\includegraphics[width=.98\linewidth]{figures/ring_scenarios.png}\caption{Illustrative relay, collection-hub, and circular-flow motifs. They explain graph patterns of interest; they are not confirmed PaySim fraud rings.}\end{figure}
+The research question is whether transaction, behavioral, and graph evidence can (1) rank fraudulent transactions and (2) identify suspicious account groups whose activity is structurally and temporally coordinated. These are different tasks: a fraud-labelled transaction does not make every connected account fraudulent, and a connected component alone does not establish a ring. PaySim labels transactions but supplies no independently verified ring identities, so group recovery must be evaluated separately using controlled planted groups.
+\clearpage
 \section*{Executive summary}
 The project evaluates transaction-level fraud classification and a separate, label-free workflow for discovering candidate coordinated groups. XGBoost attained test average precision (AP) of 0.971 with pre-transaction balances, but a balance ablation fell to 0.326. The result is strongly influenced by a PaySim-specific signature. The full graph scan produced no groups meeting the declared coordination criteria. PaySim has transaction labels, not verified ring labels; ring recovery is therefore reported only on a controlled planted-group benchmark.
 \section*{Data and experimental setup}
@@ -214,6 +265,13 @@ P = lambda text, style="BodyX": Paragraph(text, styles[style])
 story += [Spacer(1, .1*inch), P("Fraud Transaction Detection<br/>and Coordinated-Group Discovery", "ReportTitle"),
           P("PaySim offline prototype | Analytics and Systems of Big Data | October 2026", "Subtitle"),
           HRFlowable(width="100%", thickness=1.2, color=colors.HexColor("#1A7892"), spaceAfter=9),
+          P("Problem introduction", "SectionX"),
+          P("Financial fraud may involve multiple accounts coordinating money movement. An account can relay funds through intermediaries; several accounts can send to a common collector; or funds can circulate through a directed cycle. A transaction graph represents accounts as nodes and transfers as directed, time-stamped, amount-weighted edges. These patterns motivate analysis beyond isolated transaction classification."),
+          Image(str(FIG / "ring_scenarios.png"), width=6.95*inch, height=2.48*inch),
+          P("Figure 1. Illustrative relay/layering, fan-in collection, and circular-flow motifs. These are examples to investigate, not confirmed rings or observed PaySim findings.", "CaptionX"),
+          P("Research question and scope", "SectionX"),
+          P("Can transaction, behavioral, and graph evidence improve fraud-transaction ranking, and can structural, temporal, and flow evidence identify suspicious groups of coordinated accounts? These are different targets: a fraud-labelled transaction does not make every connected account fraudulent, and a connected component alone does not establish a ring. PaySim has transaction labels but no independently verified ring identities, so group recovery is assessed separately on controlled planted groups.", "BodyX"),
+          PageBreak(),
           P("Executive summary", "SectionX"),
           P("This project evaluates two distinct tasks: transaction-level fraud classification and label-free discovery of candidate coordinated groups. XGBoost reached <b>0.971 test average precision</b> with pre-transaction balances, but the balance-free ablation fell to <b>0.326</b>. The high result reflects a strong PaySim-specific signature. The full graph scan returned <b>zero groups</b> meeting the declared coordination criteria. PaySim has transaction labels, not verified ring labels, so no PaySim ring-level performance is claimed."),
           P("Dataset and split", "SectionX")]
@@ -237,7 +295,7 @@ tbl.setStyle(TableStyle([
 ]))
 story += [tbl, Spacer(1, 5), P("No missing fields were found; exact duplicates were checked by 64-bit row hash. Fraud labels occur only on CASH_OUT (4,116) and TRANSFER (4,097). Test prevalence is 14.7x training prevalence (0.095%), indicating substantial temporal shift. *A theoretical hash collision is possible.", "SmallX"),
           Image(str(FIG / "eda_overview.png"), width=6.95*inch, height=3.75*inch),
-          P("Figure 1. Transaction mix, fraud counts, log-scale amount sample, and activity over simulation steps. The account activity panel is based on a deterministic sample.", "CaptionX"),
+          P("Figure 2. Transaction mix, fraud counts, log-scale amount sample, and activity over simulation steps. The account activity panel is based on a deterministic sample.", "CaptionX"),
           PageBreak()]
 
 story += [P("1. Feature construction and evaluation protocol", "SectionX"),
@@ -286,7 +344,7 @@ story += [st, Spacer(1, 7),
 story += [P("2. Transaction fraud classification", "SectionX"),
           P("Model A uses transaction type, amount, step, and pre-transaction origin/destination balances. The no-balance ablation removes both balance fields. Model B adds strictly prior-step endpoint behavior; Model C adds prior graph degree, distinct-counterparty counts, and repeat intensity. Post-transaction balances, `isFlaggedFraud`, raw account IDs, and target-derived features are excluded. Logistic Regression is the conventional baseline; XGBoost uses histogram trees, training-derived class weighting, validation AP for early stopping, and a 600-tree cap."),
           Image(str(FIG / "classification_ablation.png"), width=6.95*inch, height=3.22*inch),
-          P("Figure 2. Validation and test average precision by model and feature set. The holdout is chronological; test ranking is evaluated once after validation-based model selection.", "CaptionX")]
+          P("Figure 3. Validation and test average precision by model and feature set. The holdout is chronological; test ranking is evaluated once after validation-based model selection.", "CaptionX")]
 
 table_data = [["Model", "Val AP", "Test AP", "P / R @ 90"],
               ["Rule: transfer/cash-out amount", "-", ".218", ".789 / .057"],
@@ -328,7 +386,7 @@ bt.setStyle(TableStyle([
     ("TOPPADDING",(0,0),(-1,-1),7),("BOTTOMPADDING",(0,0),(-1,-1),7),
 ]))
 story += [bt, Spacer(1, 8), Image(str(FIG / "alert_budget_results.png"), width=6.95*inch, height=2.85*inch),
-          P("Figure 3. Precision and recall at exact 0.1%, 0.5%, and 1.0% test alert budgets.", "CaptionX"),
+          P("Figure 4. Precision and recall at exact 0.1%, 0.5%, and 1.0% test alert budgets.", "CaptionX"),
           P("Reading the operating points", "SectionX"),
           P("At 90 alerts, all XGBoost variants retrieve the same 90 frauds and no false positives, giving 7.19% recall. At 448 alerts, A, B, and C each recover 448 frauds; the no-balance model recovers 276. At 895 alerts, A, B, and C remain close: precision ranges from 0.984 to 0.990 and recall from 0.704 to 0.708. The graph addition improves B by only 0.0074 test AP and does not surpass A.", "BodyX"),
           P("Scores are tied near several cutoffs. At 90 alerts, an inclusive threshold would select 93 A rows, 214 no-balance rows, 199 B rows, and 165 C rows. The reported results select exactly k rows using a stable tie-break. Operational use would need a secondary ranking or queue policy for ties.", "BodyX"),

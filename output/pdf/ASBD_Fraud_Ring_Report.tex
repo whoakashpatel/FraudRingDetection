@@ -8,6 +8,11 @@
 \author{Analytics and Systems of Big Data}
 \date{October 2026}
 \begin{document}\maketitle
+\section*{Problem introduction}
+Financial fraud can involve several accounts moving value in coordination: one account may relay funds through intermediaries, multiple accounts may converge on a collector, or funds may circulate through a directed cycle. In a transaction graph, accounts are nodes and transfers are directed, time-stamped, amount-weighted edges. These structures motivate looking beyond isolated transaction classification.
+\begin{figure}[h]\centering\includegraphics[width=.98\linewidth]{figures/ring_scenarios.png}\caption{Illustrative relay, collection-hub, and circular-flow motifs. They explain graph patterns of interest; they are not confirmed PaySim fraud rings.}\end{figure}
+The research question is whether transaction, behavioral, and graph evidence can (1) rank fraudulent transactions and (2) identify suspicious account groups whose activity is structurally and temporally coordinated. These are different tasks: a fraud-labelled transaction does not make every connected account fraudulent, and a connected component alone does not establish a ring. PaySim labels transactions but supplies no independently verified ring identities, so group recovery must be evaluated separately using controlled planted groups.
+\clearpage
 \section*{Executive summary}
 The project evaluates transaction-level fraud classification and a separate, label-free workflow for discovering candidate coordinated groups. XGBoost attained test average precision (AP) of 0.971 with pre-transaction balances, but a balance ablation fell to 0.326. The result is strongly influenced by a PaySim-specific signature. The full graph scan produced no groups meeting the declared coordination criteria. PaySim has transaction labels, not verified ring labels; ring recovery is therefore reported only on a controlled planted-group benchmark.
 \section*{Data and experimental setup}
