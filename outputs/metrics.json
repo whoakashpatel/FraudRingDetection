@@ -1,0 +1,430 @@
+{
+  "input": "dataset/data.csv",
+  "dataset_rows": 6362620,
+  "split_definition": {
+    "train": "step <= 520",
+    "validation": "521 <= step <= 631",
+    "test": "step >= 632"
+  },
+  "split_counts": {
+    "train": {
+      "rows": 6082007,
+      "fraud": 5781,
+      "prevalence": 0.0009505086067806235
+    },
+    "validation": {
+      "rows": 191147,
+      "fraud": 1180,
+      "prevalence": 0.006173259323975788
+    },
+    "test": {
+      "rows": 89466,
+      "fraud": 1252,
+      "prevalence": 0.01399414302640109
+    }
+  },
+  "target": "isFraud transaction label; never used in group generation or account features.",
+  "feature_availability": "Only current transaction type, amount, pre-transaction balances, step, and strictly prior-step account/graph aggregates are model inputs. Post-transaction balances, isFlaggedFraud, and raw account IDs are excluded.",
+  "balance_shortcut_audit": {
+    "predicate": "amount == oldbalanceOrg",
+    "fraud_rows": 8213,
+    "fraud_rows_matching": 8034,
+    "fraud_fraction_matching": 0.9782052843053696,
+    "nonfraud_rows": 6354407,
+    "nonfraud_rows_matching": 0,
+    "interpretation": "Pre-transaction fields make this a simulator-specific predictive shortcut, not post-transaction leakage; test separately with the no-balance ablation."
+  },
+  "alert_budget_fraction": 0.001,
+  "tie_break_policy": "Stable test-row order selects exactly k rows at each fixed alert budget; inclusive cutoff counts are reported to expose ties.",
+  "xgboost_parameters": {
+    "objective": "binary:logistic",
+    "eval_metric": "aucpr",
+    "tree_method": "hist",
+    "n_estimators": 600,
+    "learning_rate": 0.08,
+    "max_depth": 6,
+    "min_child_weight": 10,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 5.0,
+    "max_bin": 256,
+    "scale_pos_weight": 1051.0683272790175,
+    "early_stopping_rounds": 30,
+    "n_jobs": 8,
+    "random_state": 42,
+    "verbosity": 0
+  },
+  "xgboost_version": "3.1.1",
+  "models": {
+    "rule_transfer_cashout_amount": {
+      "test_rows": 89466,
+      "test_positive_rows": 1252,
+      "test_prevalence": 0.01399414302640109,
+      "average_precision": 0.2183466376658214,
+      "fixed_alert_budgets": {
+        "0.1%": {
+          "requested_alerts": 90,
+          "actual_alerts": 90,
+          "precision": 0.7888888888888889,
+          "recall": 0.05670926517571885,
+          "confusion_matrix": {
+            "tn": 88195,
+            "fp": 19,
+            "fn": 1181,
+            "tp": 71
+          },
+          "score_cutoff": 16.11809539794922,
+          "rows_at_or_above_cutoff": 97,
+          "cutoff_tie_overflow": 7,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "0.5%": {
+          "requested_alerts": 448,
+          "actual_alerts": 448,
+          "precision": 0.45535714285714285,
+          "recall": 0.16293929712460065,
+          "confusion_matrix": {
+            "tn": 87970,
+            "fp": 244,
+            "fn": 1048,
+            "tp": 204
+          },
+          "score_cutoff": 14.93349838256836,
+          "rows_at_or_above_cutoff": 448,
+          "cutoff_tie_overflow": 0,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "1.0%": {
+          "requested_alerts": 895,
+          "actual_alerts": 895,
+          "precision": 0.3486033519553073,
+          "recall": 0.24920127795527156,
+          "confusion_matrix": {
+            "tn": 87631,
+            "fp": 583,
+            "fn": 940,
+            "tp": 312
+          },
+          "score_cutoff": 14.254359245300293,
+          "rows_at_or_above_cutoff": 895,
+          "cutoff_tie_overflow": 0,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        }
+      },
+      "primary_budget": "0.1%"
+    },
+    "logistic_A_pretransaction": {
+      "test_rows": 89466,
+      "test_positive_rows": 1252,
+      "test_prevalence": 0.01399414302640109,
+      "average_precision": 0.5166204280398311,
+      "fixed_alert_budgets": {
+        "0.1%": {
+          "requested_alerts": 90,
+          "actual_alerts": 90,
+          "precision": 1.0,
+          "recall": 0.07188498402555911,
+          "confusion_matrix": {
+            "tn": 88214,
+            "fp": 0,
+            "fn": 1162,
+            "tp": 90
+          },
+          "score_cutoff": 1.0,
+          "rows_at_or_above_cutoff": 199,
+          "cutoff_tie_overflow": 109,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "0.5%": {
+          "requested_alerts": 448,
+          "actual_alerts": 448,
+          "precision": 0.7589285714285714,
+          "recall": 0.2715654952076677,
+          "confusion_matrix": {
+            "tn": 88106,
+            "fp": 108,
+            "fn": 912,
+            "tp": 340
+          },
+          "score_cutoff": 0.999724805355072,
+          "rows_at_or_above_cutoff": 448,
+          "cutoff_tie_overflow": 0,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "1.0%": {
+          "requested_alerts": 895,
+          "actual_alerts": 895,
+          "precision": 0.5184357541899441,
+          "recall": 0.3706070287539936,
+          "confusion_matrix": {
+            "tn": 87783,
+            "fp": 431,
+            "fn": 788,
+            "tp": 464
+          },
+          "score_cutoff": 0.9938203692436218,
+          "rows_at_or_above_cutoff": 895,
+          "cutoff_tie_overflow": 0,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        }
+      },
+      "primary_budget": "0.1%",
+      "fit_seconds": 13.8,
+      "validation_average_precision": 0.3863085528042282
+    },
+    "xgb_A_pretransaction": {
+      "test_rows": 89466,
+      "test_positive_rows": 1252,
+      "test_prevalence": 0.01399414302640109,
+      "average_precision": 0.9710121770318815,
+      "fixed_alert_budgets": {
+        "0.1%": {
+          "requested_alerts": 90,
+          "actual_alerts": 90,
+          "precision": 1.0,
+          "recall": 0.07188498402555911,
+          "confusion_matrix": {
+            "tn": 88214,
+            "fp": 0,
+            "fn": 1162,
+            "tp": 90
+          },
+          "score_cutoff": 0.9999910593032837,
+          "rows_at_or_above_cutoff": 93,
+          "cutoff_tie_overflow": 3,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "0.5%": {
+          "requested_alerts": 448,
+          "actual_alerts": 448,
+          "precision": 1.0,
+          "recall": 0.35782747603833864,
+          "confusion_matrix": {
+            "tn": 88214,
+            "fp": 0,
+            "fn": 804,
+            "tp": 448
+          },
+          "score_cutoff": 0.9996271133422852,
+          "rows_at_or_above_cutoff": 449,
+          "cutoff_tie_overflow": 1,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "1.0%": {
+          "requested_alerts": 895,
+          "actual_alerts": 895,
+          "precision": 0.9899441340782122,
+          "recall": 0.707667731629393,
+          "confusion_matrix": {
+            "tn": 88205,
+            "fp": 9,
+            "fn": 366,
+            "tp": 886
+          },
+          "score_cutoff": 0.9972061514854431,
+          "rows_at_or_above_cutoff": 895,
+          "cutoff_tie_overflow": 0,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        }
+      },
+      "primary_budget": "0.1%",
+      "fit_seconds": 74.19,
+      "validation_average_precision": 0.9509939491442485,
+      "best_iteration": 599,
+      "training_scale_pos_weight": 1051.0683272790175,
+      "feature_count": 9
+    },
+    "xgb_A_no_balance_ablation": {
+      "test_rows": 89466,
+      "test_positive_rows": 1252,
+      "test_prevalence": 0.01399414302640109,
+      "average_precision": 0.3260871084714,
+      "fixed_alert_budgets": {
+        "0.1%": {
+          "requested_alerts": 90,
+          "actual_alerts": 90,
+          "precision": 1.0,
+          "recall": 0.07188498402555911,
+          "confusion_matrix": {
+            "tn": 88214,
+            "fp": 0,
+            "fn": 1162,
+            "tp": 90
+          },
+          "score_cutoff": 0.6097938418388367,
+          "rows_at_or_above_cutoff": 214,
+          "cutoff_tie_overflow": 124,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "0.5%": {
+          "requested_alerts": 448,
+          "actual_alerts": 448,
+          "precision": 0.6160714285714286,
+          "recall": 0.22044728434504793,
+          "confusion_matrix": {
+            "tn": 88042,
+            "fp": 172,
+            "fn": 976,
+            "tp": 276
+          },
+          "score_cutoff": 0.6059564352035522,
+          "rows_at_or_above_cutoff": 613,
+          "cutoff_tie_overflow": 165,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "1.0%": {
+          "requested_alerts": 895,
+          "actual_alerts": 895,
+          "precision": 0.4335195530726257,
+          "recall": 0.30990415335463256,
+          "confusion_matrix": {
+            "tn": 87707,
+            "fp": 507,
+            "fn": 864,
+            "tp": 388
+          },
+          "score_cutoff": 0.6010419130325317,
+          "rows_at_or_above_cutoff": 1477,
+          "cutoff_tie_overflow": 582,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        }
+      },
+      "primary_budget": "0.1%",
+      "fit_seconds": 4.62,
+      "validation_average_precision": 0.24896176284430427,
+      "best_iteration": 2,
+      "training_scale_pos_weight": 1051.0683272790175,
+      "feature_count": 7
+    },
+    "xgb_B_behavior": {
+      "test_rows": 89466,
+      "test_positive_rows": 1252,
+      "test_prevalence": 0.01399414302640109,
+      "average_precision": 0.9375231342490191,
+      "fixed_alert_budgets": {
+        "0.1%": {
+          "requested_alerts": 90,
+          "actual_alerts": 90,
+          "precision": 1.0,
+          "recall": 0.07188498402555911,
+          "confusion_matrix": {
+            "tn": 88214,
+            "fp": 0,
+            "fn": 1162,
+            "tp": 90
+          },
+          "score_cutoff": 0.9996250867843628,
+          "rows_at_or_above_cutoff": 199,
+          "cutoff_tie_overflow": 109,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "0.5%": {
+          "requested_alerts": 448,
+          "actual_alerts": 448,
+          "precision": 1.0,
+          "recall": 0.35782747603833864,
+          "confusion_matrix": {
+            "tn": 88214,
+            "fp": 0,
+            "fn": 804,
+            "tp": 448
+          },
+          "score_cutoff": 0.9990353584289551,
+          "rows_at_or_above_cutoff": 450,
+          "cutoff_tie_overflow": 2,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "1.0%": {
+          "requested_alerts": 895,
+          "actual_alerts": 895,
+          "precision": 0.9843575418994414,
+          "recall": 0.7036741214057508,
+          "confusion_matrix": {
+            "tn": 88200,
+            "fp": 14,
+            "fn": 371,
+            "tp": 881
+          },
+          "score_cutoff": 0.9939291477203369,
+          "rows_at_or_above_cutoff": 895,
+          "cutoff_tie_overflow": 0,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        }
+      },
+      "primary_budget": "0.1%",
+      "fit_seconds": 31.47,
+      "validation_average_precision": 0.9105752477029324,
+      "best_iteration": 126,
+      "training_scale_pos_weight": 1051.0683272790175,
+      "feature_count": 23
+    },
+    "xgb_C_graph": {
+      "test_rows": 89466,
+      "test_positive_rows": 1252,
+      "test_prevalence": 0.01399414302640109,
+      "average_precision": 0.944881133753125,
+      "fixed_alert_budgets": {
+        "0.1%": {
+          "requested_alerts": 90,
+          "actual_alerts": 90,
+          "precision": 1.0,
+          "recall": 0.07188498402555911,
+          "confusion_matrix": {
+            "tn": 88214,
+            "fp": 0,
+            "fn": 1162,
+            "tp": 90
+          },
+          "score_cutoff": 0.9999727010726929,
+          "rows_at_or_above_cutoff": 165,
+          "cutoff_tie_overflow": 75,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "0.5%": {
+          "requested_alerts": 448,
+          "actual_alerts": 448,
+          "precision": 1.0,
+          "recall": 0.35782747603833864,
+          "confusion_matrix": {
+            "tn": 88214,
+            "fp": 0,
+            "fn": 804,
+            "tp": 448
+          },
+          "score_cutoff": 0.9997333884239197,
+          "rows_at_or_above_cutoff": 449,
+          "cutoff_tie_overflow": 1,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        },
+        "1.0%": {
+          "requested_alerts": 895,
+          "actual_alerts": 895,
+          "precision": 0.9888268156424581,
+          "recall": 0.7068690095846646,
+          "confusion_matrix": {
+            "tn": 88204,
+            "fp": 10,
+            "fn": 367,
+            "tp": 885
+          },
+          "score_cutoff": 0.9973090887069702,
+          "rows_at_or_above_cutoff": 895,
+          "cutoff_tie_overflow": 0,
+          "tie_break": "Stable test-row order selects exactly the requested alert count."
+        }
+      },
+      "primary_budget": "0.1%",
+      "fit_seconds": 66.32,
+      "validation_average_precision": 0.9203550626366344,
+      "best_iteration": 312,
+      "training_scale_pos_weight": 1051.0683272790175,
+      "feature_count": 27
+    }
+  },
+  "artifacts": {
+    "test_predictions": "test_predictions.npz",
+    "feature_importance": "feature_importance.json"
+  },
+  "total_runtime_seconds": 397.54,
+  "peak_process_max_rss_mib": 7486.2
+}

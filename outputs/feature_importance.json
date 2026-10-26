@@ -1,0 +1,274 @@
+{
+  "xgb_A_pretransaction": [
+    {
+      "feature": "type_CASH_IN",
+      "gain_weight": 0.4480747878551483
+    },
+    {
+      "feature": "type_PAYMENT",
+      "gain_weight": 0.33271998167037964
+    },
+    {
+      "feature": "type_CASH_OUT",
+      "gain_weight": 0.0783160924911499
+    },
+    {
+      "feature": "type_TRANSFER",
+      "gain_weight": 0.07009683549404144
+    },
+    {
+      "feature": "oldbalanceOrg",
+      "gain_weight": 0.027908438816666603
+    },
+    {
+      "feature": "amount",
+      "gain_weight": 0.021340079605579376
+    },
+    {
+      "feature": "oldbalanceDest",
+      "gain_weight": 0.00900463666766882
+    },
+    {
+      "feature": "type_DEBIT",
+      "gain_weight": 0.008469409309327602
+    },
+    {
+      "feature": "step",
+      "gain_weight": 0.004069708287715912
+    }
+  ],
+  "xgb_A_no_balance_ablation": [
+    {
+      "feature": "type_PAYMENT",
+      "gain_weight": 0.31922876834869385
+    },
+    {
+      "feature": "type_TRANSFER",
+      "gain_weight": 0.26952946186065674
+    },
+    {
+      "feature": "type_CASH_OUT",
+      "gain_weight": 0.21311445534229279
+    },
+    {
+      "feature": "type_CASH_IN",
+      "gain_weight": 0.13649234175682068
+    },
+    {
+      "feature": "amount",
+      "gain_weight": 0.03645848482847214
+    },
+    {
+      "feature": "step",
+      "gain_weight": 0.015218326821923256
+    },
+    {
+      "feature": "type_DEBIT",
+      "gain_weight": 0.009958222508430481
+    }
+  ],
+  "xgb_B_behavior": [
+    {
+      "feature": "type_CASH_IN",
+      "gain_weight": 0.38146811723709106
+    },
+    {
+      "feature": "type_PAYMENT",
+      "gain_weight": 0.24586762487888336
+    },
+    {
+      "feature": "oldbalanceOrg",
+      "gain_weight": 0.08354496210813522
+    },
+    {
+      "feature": "type_CASH_OUT",
+      "gain_weight": 0.074152372777462
+    },
+    {
+      "feature": "type_TRANSFER",
+      "gain_weight": 0.0669885203242302
+    },
+    {
+      "feature": "amount",
+      "gain_weight": 0.06562348455190659
+    },
+    {
+      "feature": "oldbalanceDest",
+      "gain_weight": 0.020660025998950005
+    },
+    {
+      "feature": "type_DEBIT",
+      "gain_weight": 0.012811312451958656
+    },
+    {
+      "feature": "dest_behavior_prior_count",
+      "gain_weight": 0.011091211810708046
+    },
+    {
+      "feature": "step",
+      "gain_weight": 0.009057805873453617
+    },
+    {
+      "feature": "dest_behavior_prior_sum",
+      "gain_weight": 0.007825237698853016
+    },
+    {
+      "feature": "dest_behavior_prior_mean",
+      "gain_weight": 0.006319710519164801
+    },
+    {
+      "feature": "dest_behavior_steps_since_last",
+      "gain_weight": 0.005498919170349836
+    },
+    {
+      "feature": "dest_behavior_prior_max",
+      "gain_weight": 0.003456313395872712
+    },
+    {
+      "feature": "dest_behavior_prior_min",
+      "gain_weight": 0.0030699463095515966
+    },
+    {
+      "feature": "dest_behavior_prior_std",
+      "gain_weight": 0.002525533316656947
+    },
+    {
+      "feature": "orig_behavior_prior_count",
+      "gain_weight": 3.89391825592611e-05
+    },
+    {
+      "feature": "orig_behavior_prior_mean",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_sum",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_std",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_min",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_max",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_steps_since_last",
+      "gain_weight": 0.0
+    }
+  ],
+  "xgb_C_graph": [
+    {
+      "feature": "type_CASH_IN",
+      "gain_weight": 0.4903569519519806
+    },
+    {
+      "feature": "type_PAYMENT",
+      "gain_weight": 0.22255326807498932
+    },
+    {
+      "feature": "type_TRANSFER",
+      "gain_weight": 0.07780955731868744
+    },
+    {
+      "feature": "type_CASH_OUT",
+      "gain_weight": 0.06378719955682755
+    },
+    {
+      "feature": "oldbalanceOrg",
+      "gain_weight": 0.04654785245656967
+    },
+    {
+      "feature": "amount",
+      "gain_weight": 0.04540835693478584
+    },
+    {
+      "feature": "oldbalanceDest",
+      "gain_weight": 0.01678059808909893
+    },
+    {
+      "feature": "type_DEBIT",
+      "gain_weight": 0.011476125568151474
+    },
+    {
+      "feature": "step",
+      "gain_weight": 0.005468159448355436
+    },
+    {
+      "feature": "dest_behavior_prior_count",
+      "gain_weight": 0.004114446230232716
+    },
+    {
+      "feature": "dest_behavior_steps_since_last",
+      "gain_weight": 0.0032997264061123133
+    },
+    {
+      "feature": "dest_behavior_prior_sum",
+      "gain_weight": 0.0025348886847496033
+    },
+    {
+      "feature": "dest_behavior_prior_min",
+      "gain_weight": 0.002109384397044778
+    },
+    {
+      "feature": "dest_behavior_prior_mean",
+      "gain_weight": 0.0018559718737378716
+    },
+    {
+      "feature": "dest_behavior_prior_std",
+      "gain_weight": 0.0016367266653105617
+    },
+    {
+      "feature": "dest_behavior_prior_max",
+      "gain_weight": 0.0014683891786262393
+    },
+    {
+      "feature": "graph_destination_in_neighbors_prior",
+      "gain_weight": 0.0013140836963430047
+    },
+    {
+      "feature": "graph_destination_repeat_intensity_prior",
+      "gain_weight": 0.0010259810369461775
+    },
+    {
+      "feature": "orig_behavior_steps_since_last",
+      "gain_weight": 0.00045225940993987024
+    },
+    {
+      "feature": "orig_behavior_prior_max",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_min",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_std",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_mean",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_count",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "orig_behavior_prior_sum",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "graph_source_out_neighbors_prior",
+      "gain_weight": 0.0
+    },
+    {
+      "feature": "graph_source_repeat_intensity_prior",
+      "gain_weight": 0.0
+    }
+  ]
+}

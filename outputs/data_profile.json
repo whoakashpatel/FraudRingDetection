@@ -1,0 +1,54 @@
+{
+  "input": "dataset/data.csv",
+  "rows": 6362620,
+  "columns": {
+    "step": "int64",
+    "type": "object",
+    "amount": "float64",
+    "nameOrig": "object",
+    "oldbalanceOrg": "float64",
+    "newbalanceOrig": "float64",
+    "nameDest": "object",
+    "oldbalanceDest": "float64",
+    "newbalanceDest": "float64",
+    "isFraud": "int64",
+    "isFlaggedFraud": "int64"
+  },
+  "missing_values": {
+    "step": 0,
+    "type": 0,
+    "amount": 0,
+    "nameOrig": 0,
+    "oldbalanceOrg": 0,
+    "newbalanceOrig": 0,
+    "nameDest": 0,
+    "oldbalanceDest": 0,
+    "newbalanceDest": 0,
+    "isFraud": 0,
+    "isFlaggedFraud": 0
+  },
+  "exact_duplicate_rows_by_64bit_hash": 0,
+  "fraud_rows": 8213,
+  "fraud_rate": 0.001290820448180152,
+  "flagged_fraud_rows": 16,
+  "steps_min": 1,
+  "steps_max": 743,
+  "amount_min": 0.0,
+  "amount_max": 92445516.64,
+  "amount_mean": 179861.90354913066,
+  "rows_by_type": {
+    "CASH_OUT": 2237500,
+    "PAYMENT": 2151495,
+    "CASH_IN": 1399284,
+    "TRANSFER": 532909,
+    "DEBIT": 41432
+  },
+  "fraud_rows_by_type": {
+    "CASH_OUT": 4116,
+    "TRANSFER": 4097
+  },
+  "notes": [
+    "Duplicate counts use 64-bit row hashes, so a theoretical hash collision is possible.",
+    "PaySim labels transactions; they do not establish independently verified fraud rings."
+  ]
+}

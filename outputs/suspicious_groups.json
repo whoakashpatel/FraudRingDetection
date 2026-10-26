@@ -1,0 +1,377 @@
+{
+  "method": "Edges with type TRANSFER or CASH_OUT and amount at or above a sampled quantile cutoff; weak components in this targeted directed subgraph.",
+  "amount_quantile": 0.995,
+  "sampled_amount_cutoff": 4560530.623199962,
+  "selected_transaction_rows": 12744,
+  "targeted_nodes": 21517,
+  "targeted_directed_pairs": 12744,
+  "candidate_group_count_size_at_least_3": 2337,
+  "groups": [
+    {
+      "accounts": [
+        "C1001742979",
+        "C141316671",
+        "C1493678807",
+        "C1622844371",
+        "C679640558",
+        "C833985742",
+        "C844374854"
+      ],
+      "account_count": 7,
+      "directed_pair_count": 6,
+      "transaction_rows": 6,
+      "gross_amount": 88817607.14,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.16666666666666666,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1257524161",
+        "C1570256460",
+        "C1588880909",
+        "C1637965487",
+        "C1980839306",
+        "C796746820"
+      ],
+      "account_count": 6,
+      "directed_pair_count": 5,
+      "transaction_rows": 5,
+      "gross_amount": 65252657.61,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.2,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1096385925",
+        "C1423246212",
+        "C1994343691",
+        "C434906044",
+        "C770133949"
+      ],
+      "account_count": 5,
+      "directed_pair_count": 4,
+      "transaction_rows": 4,
+      "gross_amount": 63288322.17,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.25,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1348396248",
+        "C1854664982",
+        "C1872840947",
+        "C1954217280",
+        "C260511138"
+      ],
+      "account_count": 5,
+      "directed_pair_count": 4,
+      "transaction_rows": 4,
+      "gross_amount": 61694519.82,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.25,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1107948879",
+        "C1401275229",
+        "C262512882",
+        "C50368712"
+      ],
+      "account_count": 4,
+      "directed_pair_count": 3,
+      "transaction_rows": 3,
+      "gross_amount": 47933922.05,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.3333333333333333,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1220805115",
+        "C1437199563",
+        "C1916830745",
+        "C91276418"
+      ],
+      "account_count": 4,
+      "directed_pair_count": 3,
+      "transaction_rows": 3,
+      "gross_amount": 33984918.74,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.3333333333333333,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1770931490",
+        "C351297720",
+        "C394829574",
+        "C766681183"
+      ],
+      "account_count": 4,
+      "directed_pair_count": 3,
+      "transaction_rows": 3,
+      "gross_amount": 34643658.13,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.3333333333333333,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1917849910",
+        "C406636210",
+        "C824646662",
+        "C959382680"
+      ],
+      "account_count": 4,
+      "directed_pair_count": 3,
+      "transaction_rows": 3,
+      "gross_amount": 53585124.33,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.3333333333333333,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1033290326",
+        "C1507725577",
+        "C1721246847"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 11121493.53,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1039668554",
+        "C1638356278",
+        "C2113941945"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 14302628.08,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C104270022",
+        "C1185250980",
+        "C970287333"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 14396663.4,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1066838925",
+        "C1265892323",
+        "C984819783"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 14596040.84,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1087608096",
+        "C1599314459",
+        "C1891733615"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 13007871.77,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C109475708",
+        "C1527777046",
+        "C1879989290"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 15188396.11,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1199373292",
+        "C1848431489",
+        "C440599856"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 14441456.66,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1203173897",
+        "C602293403",
+        "C780587384"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 13825275.9,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1220405366",
+        "C122340101",
+        "C1507643485"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 18668344.37,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C123757418",
+        "C346649476",
+        "C637864371"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 16317412.91,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C131527035",
+        "C1548771851",
+        "C897416477"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 17504010.91,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1320375746",
+        "C2056964049",
+        "C884129492"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 15929116.13,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1396053431",
+        "C2116038737",
+        "C66188207"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 12731316.68,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1419603999",
+        "C450614796",
+        "C909312047"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 12284573.62,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1440649048",
+        "C1477641326",
+        "C593985052"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 21217851.38,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1450787884",
+        "C232278551",
+        "C253761308"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 10781176.58,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    },
+    {
+      "accounts": [
+        "C1525891116",
+        "C17870584",
+        "C705444596"
+      ],
+      "account_count": 3,
+      "directed_pair_count": 2,
+      "transaction_rows": 2,
+      "gross_amount": 13889324.81,
+      "fraud_label_transaction_rows": 1,
+      "fraud_label_rate": 0.5,
+      "directed_cycle_count_sampled": 0
+    }
+  ],
+  "interpretation": "Exploratory transaction groups only. Fraud labels describe transactions; group membership does not establish account or ring guilt."
+}

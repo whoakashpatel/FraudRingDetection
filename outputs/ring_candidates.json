@@ -1,0 +1,27 @@
+{
+  "method": "Non-overlapping time-window weak components plus overlapping SCC, fan-in/fan-out, and Charikar-style dense-subgraph proposals; eligible groups ranked by fixed structural, temporal, and flow evidence.",
+  "window_steps": 24,
+  "processed_windows": 31,
+  "window_limit": null,
+  "complete_timeline_scan": true,
+  "candidate_count": 0,
+  "label_use": "No transaction fraud labels or model predictions are read or used.",
+  "interpretation": "Candidates are unverified groups for investigation; connectivity and score do not establish fraud or common control.",
+  "candidate_eligibility": "At least the configured number of accounts in directed cycles, or at least the configured number of temporally ordered relays across the minimum number of active steps.",
+  "score_definition": {
+    "weighted_terms": {
+      "directed_density": 0.08,
+      "reciprocal_pair_fraction": 0.05,
+      "directed_cycle_edge_fraction": 0.2,
+      "temporally_ordered_relay_fraction": 0.12,
+      "window_temporal_compactness": 0.4,
+      "repeated_pair_transaction_fraction": 0.03,
+      "mean_account_in_out_amount_continuity": 0.05,
+      "amount_similarity": 0.07
+    },
+    "note": "Weights are a declared heuristic and have not been optimized against PaySim labels."
+  },
+  "candidates": [],
+  "runtime_seconds": 276.05,
+  "peak_process_max_rss_mib": 734.0
+}

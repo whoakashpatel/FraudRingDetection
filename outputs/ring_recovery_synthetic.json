@@ -1,0 +1,261 @@
+{
+  "synthetic_only": true,
+  "first_seed": 23,
+  "repeat_count": 5,
+  "runs": [
+    {
+      "synthetic_only": true,
+      "seed": 23,
+      "planted_ring_count": 30,
+      "decoy_episode_count": 90,
+      "transaction_rows_including_noise": 1455,
+      "candidate_count": 234,
+      "group_match_rule": "Candidates are ranked; each planted ring may match only once, at the first candidate with account-set intersection-over-union at least 0.5.",
+      "score_separation": {
+        "positive_candidate_mean": 0.5352315302460542,
+        "negative_candidate_mean": 0.49911956094763565
+      },
+      "rankings": {
+        "interpretable_group_score": {
+          "average_precision": 0.20489713526408995,
+          "precision_at_30": 0.4,
+          "member_recovery_at_30": 0.32,
+          "ring_recall_at_30": 0.4,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_transaction_count_baseline": {
+          "average_precision": 0.19918347558631128,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_density_baseline": {
+          "average_precision": 0.09691814788594119,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        }
+      },
+      "limitations": "Controlled generator only; ring patterns, background, and thresholds are artificial and do not validate PaySim ring accuracy."
+    },
+    {
+      "synthetic_only": true,
+      "seed": 24,
+      "planted_ring_count": 30,
+      "decoy_episode_count": 90,
+      "transaction_rows_including_noise": 1455,
+      "candidate_count": 232,
+      "group_match_rule": "Candidates are ranked; each planted ring may match only once, at the first candidate with account-set intersection-over-union at least 0.5.",
+      "score_separation": {
+        "positive_candidate_mean": 0.5365211959647045,
+        "negative_candidate_mean": 0.4845900882447793
+      },
+      "rankings": {
+        "interpretable_group_score": {
+          "average_precision": 0.3040961034661974,
+          "precision_at_30": 0.5,
+          "member_recovery_at_30": 0.4000000000000001,
+          "ring_recall_at_30": 0.5,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_transaction_count_baseline": {
+          "average_precision": 0.20093296939773317,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_density_baseline": {
+          "average_precision": 0.09691814788594119,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        }
+      },
+      "limitations": "Controlled generator only; ring patterns, background, and thresholds are artificial and do not validate PaySim ring accuracy."
+    },
+    {
+      "synthetic_only": true,
+      "seed": 25,
+      "planted_ring_count": 30,
+      "decoy_episode_count": 90,
+      "transaction_rows_including_noise": 1455,
+      "candidate_count": 228,
+      "group_match_rule": "Candidates are ranked; each planted ring may match only once, at the first candidate with account-set intersection-over-union at least 0.5.",
+      "score_separation": {
+        "positive_candidate_mean": 0.5355131871060487,
+        "negative_candidate_mean": 0.4884598998677346
+      },
+      "rankings": {
+        "interpretable_group_score": {
+          "average_precision": 0.2652671868416641,
+          "precision_at_30": 0.5,
+          "member_recovery_at_30": 0.4000000000000001,
+          "ring_recall_at_30": 0.5,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_transaction_count_baseline": {
+          "average_precision": 0.20462516557700364,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_density_baseline": {
+          "average_precision": 0.09691814788594119,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        }
+      },
+      "limitations": "Controlled generator only; ring patterns, background, and thresholds are artificial and do not validate PaySim ring accuracy."
+    },
+    {
+      "synthetic_only": true,
+      "seed": 26,
+      "planted_ring_count": 30,
+      "decoy_episode_count": 90,
+      "transaction_rows_including_noise": 1455,
+      "candidate_count": 231,
+      "group_match_rule": "Candidates are ranked; each planted ring may match only once, at the first candidate with account-set intersection-over-union at least 0.5.",
+      "score_separation": {
+        "positive_candidate_mean": 0.5351951681281694,
+        "negative_candidate_mean": 0.47575280460295444
+      },
+      "rankings": {
+        "interpretable_group_score": {
+          "average_precision": 0.23326166825807276,
+          "precision_at_30": 0.5,
+          "member_recovery_at_30": 0.4000000000000001,
+          "ring_recall_at_30": 0.5,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_transaction_count_baseline": {
+          "average_precision": 0.20183121461616135,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_density_baseline": {
+          "average_precision": 0.09691814788594119,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        }
+      },
+      "limitations": "Controlled generator only; ring patterns, background, and thresholds are artificial and do not validate PaySim ring accuracy."
+    },
+    {
+      "synthetic_only": true,
+      "seed": 27,
+      "planted_ring_count": 30,
+      "decoy_episode_count": 90,
+      "transaction_rows_including_noise": 1455,
+      "candidate_count": 233,
+      "group_match_rule": "Candidates are ranked; each planted ring may match only once, at the first candidate with account-set intersection-over-union at least 0.5.",
+      "score_separation": {
+        "positive_candidate_mean": 0.5351434667803048,
+        "negative_candidate_mean": 0.4991211774481702
+      },
+      "rankings": {
+        "interpretable_group_score": {
+          "average_precision": 0.1953231778997389,
+          "precision_at_30": 0.3333333333333333,
+          "member_recovery_at_30": 0.26666666666666666,
+          "ring_recall_at_30": 0.3333333333333333,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_transaction_count_baseline": {
+          "average_precision": 0.200050528322474,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        },
+        "candidate_density_baseline": {
+          "average_precision": 0.09691814788594119,
+          "precision_at_30": 0.0,
+          "member_recovery_at_30": 0.0,
+          "ring_recall_at_30": 0.0,
+          "candidate_coverage_recall": 1.0
+        }
+      },
+      "limitations": "Controlled generator only; ring patterns, background, and thresholds are artificial and do not validate PaySim ring accuracy."
+    }
+  ],
+  "summary_mean_and_std": {
+    "interpretable_group_score": {
+      "average_precision": {
+        "mean": 0.2405690543459526,
+        "std": 0.04004686443782597
+      },
+      "precision_at_30": {
+        "mean": 0.44666666666666666,
+        "std": 0.06863753427324668
+      },
+      "member_recovery_at_30": {
+        "mean": 0.3573333333333334,
+        "std": 0.05491002741859737
+      },
+      "ring_recall_at_30": {
+        "mean": 0.44666666666666666,
+        "std": 0.06863753427324668
+      },
+      "candidate_coverage_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "candidate_transaction_count_baseline": {
+      "average_precision": {
+        "mean": 0.20132467069993668,
+        "std": 0.001871440001465019
+      },
+      "precision_at_30": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "member_recovery_at_30": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "ring_recall_at_30": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "candidate_coverage_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "candidate_density_baseline": {
+      "average_precision": {
+        "mean": 0.09691814788594119,
+        "std": 0.0
+      },
+      "precision_at_30": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "member_recovery_at_30": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "ring_recall_at_30": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "candidate_coverage_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    }
+  },
+  "limitations": "Controlled generator only; these seeded repetitions do not validate PaySim ring accuracy or real-world performance."
+}
